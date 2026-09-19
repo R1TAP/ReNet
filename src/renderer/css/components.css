@@ -1,0 +1,308 @@
+/* Material Design 3 Components */
+
+/* --- MD3 Cards --- */
+.m3-card {
+  border-radius: var(--md-sys-shape-xl);
+  background: linear-gradient(180deg, rgba(34, 38, 48, 0.85) 0%, rgba(24, 26, 34, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 8px 24px -4px rgba(0, 0, 0, 0.35);
+  color: var(--md-sys-color-on-surface);
+  transition: all 0.25s var(--md-sys-motion-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.m3-card.elevated {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+    0 12px 32px -6px rgba(0, 0, 0, 0.45);
+}
+
+.m3-card.elevated:hover {
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    0 16px 36px -6px rgba(0, 0, 0, 0.55);
+}
+
+.m3-card.high {
+  background: linear-gradient(180deg, rgba(34, 37, 47, 0.8) 0%, rgba(23, 25, 34, 0.88) 100%);
+}
+
+.m3-card.highest {
+  background: linear-gradient(180deg, rgba(42, 46, 58, 0.88) 0%, rgba(28, 31, 42, 0.94) 100%);
+}
+
+/* --- MD3 Buttons --- */
+.m3-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 24px;
+  border-radius: var(--md-sys-shape-full);
+  font-family: var(--md-sys-typescale-font);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s var(--md-sys-motion-standard);
+  user-select: none;
+}
+
+.m3-btn:active {
+  transform: scale(0.98);
+}
+
+.m3-btn.filled {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.m3-btn.filled:hover {
+  box-shadow: var(--md-sys-elevation-2);
+  filter: brightness(1.06);
+}
+
+.m3-btn.tonal {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.m3-btn.tonal:hover {
+  filter: brightness(1.05);
+}
+
+.m3-btn.outlined {
+  background: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-outline);
+}
+
+.m3-btn.outlined:hover {
+  background-color: rgba(0, 99, 155, 0.08);
+}
+
+.m3-btn.success {
+  background-color: var(--md-sys-color-success);
+  color: var(--md-sys-color-on-success);
+}
+
+.m3-btn.error {
+  background-color: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+}
+
+.m3-btn.large-hero {
+  height: 56px;
+  padding: 0 36px;
+  font-size: 16px;
+  border-radius: var(--md-sys-shape-full);
+  letter-spacing: 0.5px;
+}
+
+/* Icon Buttons */
+.m3-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.m3-icon-btn:hover {
+  background-color: rgba(120, 120, 120, 0.12);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* --- MD3 Chips --- */
+.m3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--md-sys-shape-sm);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  background: transparent;
+}
+
+.m3-chip.active {
+  background-color: var(--md-sys-color-success-container);
+  color: var(--md-sys-color-on-success-container);
+  border-color: transparent;
+}
+
+.m3-chip.warning {
+  background-color: var(--md-sys-color-warning-container);
+  color: var(--md-sys-color-on-warning-container);
+  border-color: transparent;
+}
+
+.m3-chip.idle {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+/* --- MD3 Switch --- */
+.m3-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 32px;
+}
+
+.m3-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.m3-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--md-sys-color-surface-container-highest);
+  border: 2px solid var(--md-sys-color-outline);
+  transition: all 0.25s var(--md-sys-motion-standard);
+  border-radius: 32px;
+}
+
+.m3-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 6px;
+  bottom: 6px;
+  background-color: var(--md-sys-color-outline);
+  transition: all 0.25s var(--md-sys-motion-standard);
+  border-radius: 50%;
+}
+
+input:checked + .m3-switch-slider {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+}
+
+input:checked + .m3-switch-slider:before {
+  transform: translateX(20px);
+  background-color: var(--md-sys-color-on-primary);
+  width: 24px;
+  height: 24px;
+  left: 2px;
+  bottom: 2px;
+}
+
+/* --- MD3 Inputs & Selects --- */
+.m3-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.m3-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.m3-select, .m3-input {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--md-sys-shape-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--md-sys-color-on-surface);
+  font-size: 14px;
+  font-family: var(--md-sys-typescale-font);
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.m3-select:focus, .m3-input:focus {
+  border-color: var(--md-sys-color-primary);
+  background-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 2px rgba(142, 206, 255, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* --- MD3 Dialog / Modal --- */
+.m3-modal-scrim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8, 10, 15, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+
+.m3-modal-scrim.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.m3-dialog {
+  width: 90%;
+  max-width: 520px;
+  background: linear-gradient(180deg, rgba(38, 41, 52, 0.97) 0%, rgba(25, 27, 36, 0.99) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    0 28px 64px -10px rgba(0, 0, 0, 0.75);
+  transform: scale(0.92);
+  transition: transform 0.25s var(--md-sys-motion-emphasized);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.m3-dialog::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.m3-modal-scrim.visible .m3-dialog {
+  transform: scale(1);
+}
+
+.m3-dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}

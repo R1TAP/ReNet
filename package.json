@@ -1,0 +1,46 @@
+{
+  "name": "renet-desktop",
+  "version": "1.0.5",
+  "description": "A modern Material Design 3 desktop client for Gnirehtet reverse tethering",
+  "main": "src/main/index.js",
+  "author": "ReNet Contributors",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "electron .",
+    "setup-tools": "node scripts/setup-tools.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win portable",
+    "build": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.renet.desktop",
+    "productName": "ReNet",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "src/assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "${productName}-v${version}-Portable.exe"
+    },
+    "extraResources": [
+      {
+        "from": "bin",
+        "to": "bin",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "files": [
+      "src/**/*",
+      "package.json"
+    ]
+  }
+}

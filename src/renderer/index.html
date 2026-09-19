@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReNet - 手机反向网络代理</title>
+  <link rel="stylesheet" href="css/md3-theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!-- Window Titlebar -->
+  <header class="app-titlebar">
+    <div class="titlebar-brand">
+      <img src="../assets/icon.png" alt="ReNet Logo" class="app-logo">
+      <span class="app-title">ReNet</span>
+      <span class="m3-chip idle" id="global-status-chip" style="height: 22px; padding: 0 8px; font-size: 11px;">
+        ○ 空闲
+      </span>
+    </div>
+
+    <div class="titlebar-actions">
+      <button class="m3-icon-btn" id="btn-open-settings" title="配置与诊断" style="width: 32px; height: 32px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+        </svg>
+      </button>
+
+      <div class="window-controls">
+        <button class="win-btn" id="win-min" title="最小化">
+          <svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
+        </button>
+        <button class="win-btn" id="win-max" title="最大化">
+          <svg width="10" height="10" viewBox="0 0 10 10" id="icon-win-max"><rect x="0.5" y="0.5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" id="icon-win-restore" style="display: none;"><rect x="2.5" y="0.5" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1"/><path d="M0.5 3.5V9.5H6.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        </button>
+        <button class="win-btn close" id="win-close" title="关闭">
+          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M0.5 0.5L9.5 9.5M9.5 0.5L0.5 9.5" stroke="currentColor" stroke-width="1"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Content -->
+  <main class="app-content">
+    <!-- Hero State Card -->
+    <section class="hero-card elevated" id="hero-card">
+      <div class="hero-visual">
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        <div class="hero-icon-wrapper" id="hero-icon">
+          📱
+        </div>
+      </div>
+
+      <div class="hero-info">
+        <h1 class="hero-title" id="hero-title">网络共享未开启</h1>
+        <div class="hero-target-row">
+          <div class="hero-select-wrapper" id="hero-select-wrapper">
+            <select class="m3-select hero-device-select" id="device-select" title="选择要共享网络的设备" style="display: none;">
+              <option value="">正在探测设备...</option>
+            </select>
+            <button type="button" class="custom-dropdown-btn" id="custom-device-btn" aria-haspopup="listbox" aria-expanded="false" title="选择要共享网络的设备">
+              <span class="custom-dropdown-text" id="custom-device-text">正在探测设备...</span>
+              <svg class="custom-dropdown-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="custom-dropdown-menu" id="custom-device-menu" role="listbox" style="display: none;"></div>
+          </div>
+          <span class="m3-chip idle" id="device-count-chip" style="height: 22px; padding: 0 8px; font-size: 11px;">0 台设备</span>
+        </div>
+        <p class="hero-subtitle">
+          <span id="hero-device-label">正在探测 Android 设备...</span>
+          <span class="hero-timer" id="hero-timer" style="display: none;">• 00:00:00</span>
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <button class="m3-btn filled large-hero" id="btn-toggle-share">
+          <span id="btn-toggle-icon">▶</span>
+          <span id="btn-toggle-text">开启网络共享</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Details Grid -->
+    <section class="info-grid">
+      <!-- Device Card -->
+      <div class="m3-card high info-card" id="card-device-info">
+        <div class="info-card-header">
+          <span>📱 在线设备</span>
+          <span class="m3-chip idle" id="device-chip" style="height: 20px; padding: 0 6px; font-size: 11px;">
+            未连接
+          </span>
+        </div>
+        <div class="info-card-value" id="device-name">等待设备接入...</div>
+        <div class="info-card-sub" id="device-sub">请开启手机【开发者选项】中的【USB 调试】</div>
+        <div class="device-chips-bar" id="device-chips-container"></div>
+      </div>
+
+      <!-- Relay Service Card -->
+      <div class="m3-card high info-card">
+        <div class="info-card-header">
+          <span>⚡ 中继通道</span>
+          <span class="m3-chip idle" id="relay-chip" style="height: 20px; padding: 0 6px; font-size: 11px;">
+            待命
+          </span>
+        </div>
+        <div class="info-card-value" id="relay-port-label">127.0.0.1:31416</div>
+        <div class="info-card-sub">本地 TCP 虚拟路由中继</div>
+      </div>
+
+      <!-- DNS Card -->
+      <div class="m3-card high info-card">
+        <div class="info-card-header">
+          <span>🌐 DNS 解析</span>
+          <span class="m3-chip idle" style="height: 20px; padding: 0 6px; font-size: 11px;">
+            已就绪
+          </span>
+        </div>
+        <div class="info-card-value" id="dns-label">阿里公共 DNS</div>
+        <div class="info-card-sub" id="dns-sub">223.5.5.5, 119.29.29.29</div>
+      </div>
+    </section>
+
+    <!-- Terminal Output Drawer -->
+    <section class="terminal-card">
+      <div class="terminal-header">
+        <div class="terminal-title">
+          <span>💻 实时运行日志</span>
+          <span id="log-counter" style="color: #57657A; font-size: 11px;">0 条记录</span>
+        </div>
+        <div class="terminal-controls">
+          <button class="term-btn" id="btn-clear-logs" title="清空日志">清空</button>
+          <button class="term-btn" id="btn-copy-logs" title="复制日志">复制</button>
+        </div>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="log-line dim">[ReNet] 应用程序就绪，正在监听设备与网络状态...</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings & Diagnostics Modal Dialog -->
+  <div class="m3-modal-scrim" id="settings-modal">
+    <div class="m3-dialog" style="max-height: 85vh; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;">
+      <h2 class="m3-dialog-title">参数设置与高级诊断</h2>
+
+      <!-- Network Settings -->
+      <div class="m3-input-group">
+        <label class="m3-label">DNS 服务器预设</label>
+        <select class="m3-select" id="setting-dns-preset">
+          <option value="223.5.5.5,119.29.29.29">阿里公共 DNS + 腾讯 DNSPod (国内推荐)</option>
+          <option value="8.8.8.8,8.8.4.4">Google Public DNS (海外网络)</option>
+          <option value="1.1.1.1,1.0.0.1">Cloudflare DNS (极速隐私)</option>
+          <option value="180.76.76.76">百度公共 DNS</option>
+          <option value="custom">自定义 DNS 服务器...</option>
+        </select>
+      </div>
+
+      <div class="m3-input-group" id="group-custom-dns" style="display: none;">
+        <label class="m3-label">自定义 DNS (逗号分隔)</label>
+        <input type="text" class="m3-input" id="setting-custom-dns" placeholder="例如: 223.5.5.5,8.8.8.8">
+      </div>
+
+      <div class="m3-input-group">
+        <label class="m3-label">中继转发端口 (Relay Port)</label>
+        <input type="number" class="m3-input" id="setting-port" value="31416" placeholder="31416">
+      </div>
+
+      <!-- ADB Source -->
+      <div class="m3-input-group">
+        <label class="m3-label">ADB 调试工具源</label>
+        <select class="m3-select" id="setting-adb-mode">
+          <option value="bundled">内置 ADB 工具 (推荐)</option>
+          <option value="system">系统环境中的 ADB (System PATH)</option>
+          <option value="custom">自定义指定 adb.exe 路径...</option>
+        </select>
+      </div>
+
+      <div class="m3-input-group" id="group-custom-adb" style="display: none;">
+        <label class="m3-label">自定义 adb.exe 绝对路径</label>
+        <input type="text" class="m3-input" id="setting-custom-adb" placeholder="例如: D:\Android\platform-tools\adb.exe">
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--md-sys-color-outline-variant); margin: 16px 0;">
+
+      <!-- Switches -->
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 14px; font-weight: 500;">插入手机时自动开启网络共享</div>
+            <div style="font-size: 12px; color: var(--md-sys-color-on-surface-variant);">检测到可用设备即自动启动共享代理</div>
+          </div>
+          <label class="m3-switch">
+            <input type="checkbox" id="setting-auto-connect">
+            <span class="m3-switch-slider"></span>
+          </label>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 14px; font-weight: 500;">关闭窗口时最小化到系统托盘</div>
+            <div style="font-size: 12px; color: var(--md-sys-color-on-surface-variant);">在后台静默运行，不中断网络共享</div>
+          </div>
+          <label class="m3-switch">
+            <input type="checkbox" id="setting-minimize-tray" checked>
+            <span class="m3-switch-slider"></span>
+          </label>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 14px; font-weight: 500;">开机时自动启动 ReNet</div>
+            <div style="font-size: 12px; color: var(--md-sys-color-on-surface-variant);">开机自动进入后台托盘（便携版绑定当前路径）</div>
+          </div>
+          <label class="m3-switch">
+            <input type="checkbox" id="setting-auto-start">
+            <span class="m3-switch-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--md-sys-color-outline-variant); margin: 16px 0;">
+
+      <!-- Diagnostics Toolbox -->
+      <div>
+        <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">🛠️ 安全诊断与排错</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <button class="m3-btn tonal" id="btn-diag-adb-ver" style="height: 34px; font-size: 12px; padding: 0 14px;">
+            检测 ADB 版本
+          </button>
+          <button class="m3-btn tonal" id="btn-diag-remove-tunnel" style="height: 34px; font-size: 12px; padding: 0 14px;">
+            清理专属网络隧道
+          </button>
+          <button class="m3-btn outlined" id="btn-diag-copy-info" style="height: 34px; font-size: 12px; padding: 0 14px;">
+            复制完整诊断信息
+          </button>
+          <button class="m3-btn error" id="btn-diag-restart-adb" style="height: 34px; font-size: 12px; padding: 0 14px;">
+            重启 ADB 服务 (需确认)
+          </button>
+        </div>
+      </div>
+
+      <div class="m3-dialog-actions">
+        <button class="m3-btn outlined" id="btn-cancel-settings">取消</button>
+        <button class="m3-btn filled" id="btn-save-settings">保存配置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Danger Confirmation Modal -->
+  <div class="m3-modal-scrim" id="confirm-modal">
+    <div class="m3-dialog" style="max-width: 440px;">
+      <h3 class="m3-dialog-title" id="confirm-title" style="color: var(--md-sys-color-error);">⚠️ 操作确认</h3>
+      <p id="confirm-message" style="font-size: 14px; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 20px;"></p>
+      <div class="m3-dialog-actions">
+        <button class="m3-btn outlined" id="btn-confirm-cancel">取消</button>
+        <button class="m3-btn error" id="btn-confirm-proceed">确定执行</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <div class="toast" id="app-toast"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/log.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

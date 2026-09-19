@@ -1,0 +1,123 @@
+/* Material Design 3 (M3) Color & Design Tokens */
+:root {
+  /* Light Theme Color Palette */
+  --md-sys-color-primary: #00639B;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #CEE5FF;
+  --md-sys-color-on-primary-container: #001D33;
+
+  --md-sys-color-secondary: #51606F;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #D5E4F6;
+  --md-sys-color-on-secondary-container: #0E1D2A;
+
+  --md-sys-color-tertiary: #67587A;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #EDDCFF;
+  --md-sys-color-on-tertiary-container: #221533;
+
+  --md-sys-color-surface: #FDFBFF;
+  --md-sys-color-on-surface: #1A1C1E;
+  --md-sys-color-surface-dim: #D9D9E0;
+  --md-sys-color-surface-bright: #FDFBFF;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #F6F3F8;
+  --md-sys-color-surface-container: #F0F4F8;
+  --md-sys-color-surface-container-high: #E8EEF3;
+  --md-sys-color-surface-container-highest: #DFE5EB;
+  --md-sys-color-on-surface-variant: #42474E;
+
+  --md-sys-color-outline: #72777F;
+  --md-sys-color-outline-variant: #C2C7CF;
+
+  /* Status Tokens */
+  --md-sys-color-success: #146C2E;
+  --md-sys-color-on-success: #FFFFFF;
+  --md-sys-color-success-container: #C3EED0;
+  --md-sys-color-on-success-container: #002107;
+
+  --md-sys-color-error: #BA1A1A;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #FFDAD6;
+  --md-sys-color-on-error-container: #410002;
+
+  --md-sys-color-warning: #7A5900;
+  --md-sys-color-warning-container: #FFE086;
+  --md-sys-color-on-warning-container: #261A00;
+
+  /* Typography */
+  --md-sys-typescale-font: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --md-sys-typescale-mono: 'Consolas', 'Cascadia Code', 'JetBrains Mono', Courier, monospace;
+
+  /* Elevation Shadows */
+  --md-sys-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  --md-sys-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  --md-sys-elevation-3: 0 4px 12px 3px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  --md-sys-elevation-4: 0 6px 16px 4px rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+
+  /* Corner Radii */
+  --md-sys-shape-xs: 4px;
+  --md-sys-shape-sm: 8px;
+  --md-sys-shape-md: 12px;
+  --md-sys-shape-lg: 16px;
+  --md-sys-shape-xl: 24px;
+  --md-sys-shape-full: 9999px;
+
+  /* Transitions */
+  --md-sys-motion-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-sys-motion-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --md-sys-color-primary: #8ECEFF;
+    --md-sys-color-on-primary: #003454;
+    --md-sys-color-primary-container: #004B76;
+    --md-sys-color-on-primary-container: #CEE5FF;
+
+    --md-sys-color-secondary: #B9C8DA;
+    --md-sys-color-on-secondary: #233240;
+    --md-sys-color-secondary-container: #3A4857;
+    --md-sys-color-on-secondary-container: #D5E4F6;
+
+    --md-sys-color-tertiary: #D2BFE7;
+    --md-sys-color-on-tertiary: #382A4A;
+    --md-sys-color-tertiary-container: #4F4061;
+    --md-sys-color-on-tertiary-container: #EDDCFF;
+
+    --md-sys-color-surface: #111315;
+    --md-sys-color-on-surface: #E2E2E6;
+    --md-sys-color-surface-dim: #111315;
+    --md-sys-color-surface-bright: #37393B;
+    --md-sys-color-surface-container-lowest: #0C0E10;
+    --md-sys-color-surface-container-low: #1A1C1E;
+    --md-sys-color-surface-container: #202428;
+    --md-sys-color-surface-container-high: #282D32;
+    --md-sys-color-surface-container-highest: #33383E;
+    --md-sys-color-on-surface-variant: #C2C7CF;
+
+    --md-sys-color-outline: #8C9199;
+    --md-sys-color-outline-variant: #42474E;
+
+    --md-sys-color-success: #73DA88;
+    --md-sys-color-on-success: #003913;
+    --md-sys-color-success-container: #00531E;
+    --md-sys-color-on-success-container: #C3EED0;
+
+    --md-sys-color-error: #FFB4AB;
+    --md-sys-color-on-error: #690005;
+    --md-sys-color-error-container: #93000A;
+    --md-sys-color-on-error-container: #FFDAD6;
+
+    --md-sys-color-warning: #FFBA28;
+    --md-sys-color-warning-container: #5B4300;
+    --md-sys-color-on-warning-container: #FFE086;
+
+    --md-sys-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+    --md-sys-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.45);
+    --md-sys-elevation-3: 0 4px 12px 3px rgba(0, 0, 0, 0.55);
+    --md-sys-elevation-4: 0 6px 16px 4px rgba(0, 0, 0, 0.65);
+  }
+}
