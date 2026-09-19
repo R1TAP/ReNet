@@ -1,5 +1,3 @@
-# 🚀 ReNet - 手机反向网络代理桌面客户端 (Reverse Tethering)
-
 <p align="center">
   <img src="src/assets/icon.png" width="128" height="128" alt="ReNet Logo" />
 </p>
