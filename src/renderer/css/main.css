@@ -153,6 +153,65 @@ html::-webkit-scrollbar {
   transition: all 0.3s cubic-bezier(0.2, 0.0, 0, 1.0);
 }
 
+/* Background layers clipped to card shape */
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-fluid-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+  opacity: 0.40;
+  transition: opacity 0.35s ease;
+}
+
+.hero-vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 2;
+  background: radial-gradient(ellipse at 50% 50%, rgba(26, 29, 38, 0.32) 0%, rgba(20, 23, 30, 0.72) 75%, rgba(16, 18, 24, 0.90) 100%);
+  transition: background 0.5s ease;
+}
+
+.hero-card.running .hero-vignette-overlay {
+  background: radial-gradient(ellipse at 50% 50%, rgba(20, 36, 32, 0.28) 0%, rgba(16, 28, 26, 0.70) 75%, rgba(12, 22, 20, 0.90) 100%);
+}
+
+/* Card foreground interactive elements */
+.hero-visual {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-info {
+  position: relative;
+  z-index: 5; /* higher than hero-actions so custom-dropdown-menu displays over button */
+}
+
+.hero-actions {
+  position: relative;
+  z-index: 3;
+}
+
 .hero-visual {
   position: relative;
   width: 96px;

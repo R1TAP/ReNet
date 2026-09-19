@@ -56,6 +56,7 @@ class AppController {
   }
 
   async init() {
+    this.initHeroFluid();
     this.bindEvents();
     this.initCustomDeviceDropdown();
     this.bindDiagnostics();
@@ -63,6 +64,27 @@ class AppController {
     await this.loadDevices();
     await this.loadStatus();
     this.subscribeEvents();
+  }
+
+  initHeroFluid() {
+    const heroCard = this.dom.heroCard;
+    if (!heroCard || typeof HeroFluidGrid === 'undefined') return;
+    try {
+      this.fluidGrid = new HeroFluidGrid(heroCard, {
+        pixelSize: 6.5,
+        pixelGap: 2.0,
+        threshold: 0.87,
+        speed: 0.20,
+        color1: [90 / 255, 175 / 255, 255 / 255],
+        color2: [220 / 255, 240 / 255, 255 / 255],
+        tileAlpha: 0.85
+      });
+      if (this.fluidGrid && this.fluidGrid.canvas) {
+        this.fluidGrid.canvas.style.opacity = '0.40';
+      }
+    } catch (err) {
+      console.warn('HeroFluidGrid init error:', err);
+    }
   }
 
   bindEvents() {
@@ -442,6 +464,16 @@ class AppController {
 
       this.startTime = data.startTime || Date.now();
       this.startTimer();
+
+      if (this.fluidGrid) {
+        this.fluidGrid.setOptions({
+          threshold: 0.85,
+          speed: 0.20,
+          pixelSize: 6.5,
+          pixelGap: 2.0
+        });
+        this.fluidGrid.setThemeState([50 / 255, 240 / 255, 140 / 255], [1.0, 1.0, 1.0]);
+      }
     } else if (this.currentState === 'STARTING') {
       if (this.dom.deviceSelect) this.dom.deviceSelect.disabled = true;
       if (this.dom.customDeviceBtn) this.dom.customDeviceBtn.disabled = true;
@@ -493,6 +525,16 @@ class AppController {
 
       this.stopTimer();
       this.updateDeviceView();
+
+      if (this.fluidGrid) {
+        this.fluidGrid.setOptions({
+          threshold: 0.87,
+          speed: 0.20,
+          pixelSize: 6.5,
+          pixelGap: 2.0
+        });
+        this.fluidGrid.setThemeState([90 / 255, 175 / 255, 255 / 255], [220 / 255, 240 / 255, 255 / 255]);
+      }
     }
   }
 
