@@ -561,6 +561,8 @@ html::-webkit-scrollbar {
 
 /* --- Terminal Console Section --- */
 .terminal-card {
+  flex: 1;
+  min-height: 180px;
   border-radius: var(--md-sys-shape-lg);
   background: linear-gradient(180deg, rgba(16, 18, 25, 0.94) 0%, rgba(12, 14, 19, 0.98) 100%);
   color: #DDE2EB;
@@ -615,7 +617,8 @@ html::-webkit-scrollbar {
 }
 
 .terminal-body {
-  height: 140px;
+  flex: 1;
+  min-height: 140px;
   padding: 10px 14px;
   overflow-y: auto;
   font-family: var(--md-sys-typescale-mono);

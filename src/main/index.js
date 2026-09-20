@@ -3,6 +3,9 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
+// Set application name
+app.name = 'ReNet';
+
 const configManager = require('./core/config');
 const deviceManager = require('./core/device');
 const gnirehtetManager = require('./core/gnirehtet');
@@ -36,14 +39,15 @@ function getAppIcon() {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: 'ReNet',
     width: 900,
-    height: 660,
+    height: 1025,
     minWidth: 720,
-    minHeight: 540,
+    minHeight: 700,
     show: false,
     frame: false,
     titleBarStyle: 'hidden',
-    backgroundColor: '#FDFBFF',
+    backgroundColor: '#101217',
     icon: getAppIcon(),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
