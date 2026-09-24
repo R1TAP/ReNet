@@ -1,4 +1,8 @@
 <p align="center">
+  <b>ReNet</b>
+</p>
+
+<p align="center">
   <img src="src/assets/icon.png" width="128" height="128" alt="ReNet Logo" />
 </p>
 
@@ -14,9 +18,8 @@
   <img src="https://img.shields.io/badge/License-Apache_2.0-green?style=flat-square" alt="License" />
 </p>
 
----
 <p align="center">
-<b>通过 USB 数据线，让移动设备直接使用电脑网络，一键开启，托盘常驻。<b>
+<b>仅需一条 USB 数据线，将移动设备接入电脑网络，一键开启，托盘常驻。<b>
 </p>
 
 ## ✨ 功能/特性
