@@ -8,7 +8,7 @@ ReNet incorporates or interfaces with the following third-party components:
 - **Author**: Genymobile (Romain Vimont / rom1v)
 - **Repository**: https://github.com/Genymobile/gnirehtet
 - **License**: Apache License 2.0
-- **Summary**: Gnirehtet provides reverse tethering for Android. It routes TCP and DNS packets from Android devices to desktop host machines.
+- **License text**: https://github.com/Genymobile/gnirehtet/blob/master/LICENSE
 
 ---
 
@@ -25,4 +25,6 @@ ReNet incorporates or interfaces with the following third-party components:
 
 ## 3. Electron
 - **Author**: OpenJS Foundation and Electron contributors
+- **Repository**: https://github.com/electron/electron
 - **License**: MIT License
+- **License text**: https://github.com/electron/electron/blob/main/LICENSE

@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-<b>仅需一条 USB 数据线，将移动设备接入电脑网络，一键开启，托盘常驻。<b>
+<b>仅需一条 USB 数据线，将移动设备接入电脑网络，一键开启，托盘常驻。</b>
 </p>
 
 ## ✨ 功能/特性
@@ -96,5 +96,4 @@
 ## 📄 开源许可证与声明
 
 - ReNet 遵循 [Apache License 2.0](LICENSE) 开源协议。
-- 第三方组件与授权声明详见 [NOTICE.md](NOTICE.md)。
-- 底层核心组件 [Gnirehtet](https://github.com/Genymobile/gnirehtet) 版权归 Genymobile 所有 (Apache-2.0)。
+  - 第三方组件遵循各自许可证，详见 [NOTICE.md](NOTICE.md)。
